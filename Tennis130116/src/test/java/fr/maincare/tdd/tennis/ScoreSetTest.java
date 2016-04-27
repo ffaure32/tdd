@@ -25,12 +25,7 @@ public class ScoreSetTest {
     public void leScoreAugmenteAvecUnJeu() throws Exception {
         // ARRANGE
         Set partie = new Set();
-        // ACT
-        Jeu jeu = partie.nouveauJeu();
-        jeu.pointJoueur1();
-        jeu.pointJoueur1();
-        jeu.pointJoueur1();
-        jeu.pointJoueur1();
+        jeuJoueur1(partie);
 
         String score = partie.score();
         // ASSERT
@@ -60,6 +55,31 @@ public class ScoreSetTest {
 
         // ASSERT
         assertThat(vainqueur).isNull();
+    }
+
+    public void joueur1Vainqueur() throws Exception {
+        // ARRANGE
+        Set partie = new Set();
+
+        // ACT
+        jeuJoueur1(partie);
+        jeuJoueur1(partie);
+        jeuJoueur1(partie);
+        jeuJoueur1(partie);
+        jeuJoueur1(partie);
+        jeuJoueur1(partie);
+        String vainqueur = partie.vainqueur();
+
+        // ASSERT
+        assertThat(vainqueur).isEqualTo("joueur1");
+    }
+
+    private void jeuJoueur1(Set partie) {
+        Jeu jeu = partie.nouveauJeu();
+        jeu.pointJoueur1();
+        jeu.pointJoueur1();
+        jeu.pointJoueur1();
+        jeu.pointJoueur1();
     }
 
 }

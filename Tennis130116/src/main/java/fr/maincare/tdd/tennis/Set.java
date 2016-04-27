@@ -63,6 +63,16 @@ public class Set {
     }
 
     public String vainqueur() {
+        int scoreJoueur1 = scoreJoueur(joueur1);
+        int scoreJoueur2 = scoreJoueur(joueur2);
+        boolean ecartSuffisant = Math.abs(scoreJoueur1-scoreJoueur2) >= 2;
+        if(ecartSuffisant) {
+            if(scoreJoueur1>=6) {
+                return joueur1;
+            } else if(scoreJoueur2>=6) {
+                return joueur2;
+            }
+        }
         return null;
     }
 
