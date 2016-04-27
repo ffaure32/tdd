@@ -1,6 +1,7 @@
 package fr.maincare.tdd.tennis;
 
 public class Jeu {
+    private static final String SEPARATEUR_SCORE = "-";
     private static final int SCORE_AVANTAGE = 4;
     private static final int ECART_MINIMUM_GAIN_JEU = 2;
     private static final int NOMBRE_POINTS_GAIN_JEU = 4;
@@ -8,7 +9,7 @@ public class Jeu {
     private ScoreJeuJoueur scoreJoueur1 = new ScoreJeuJoueur();
     private ScoreJeuJoueur scoreJoueur2 = new ScoreJeuJoueur();
     public String score() {
-        return SCORES_POSSIBLES[indexScoreJoueur1()]+"-"+SCORES_POSSIBLES[indexScoreJoueur2()];
+        return SCORES_POSSIBLES[indexScoreJoueur1()]+SEPARATEUR_SCORE+SCORES_POSSIBLES[indexScoreJoueur2()];
     }
 
     public void pointJoueur1() {
