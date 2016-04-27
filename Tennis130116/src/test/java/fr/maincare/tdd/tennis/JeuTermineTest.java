@@ -1,7 +1,5 @@
 package fr.maincare.tdd.tennis;
 
-import static org.assertj.core.api.Assertions.*;
-
 import org.junit.Test;
 
 public class JeuTermineTest {
