@@ -1,9 +1,6 @@
 package fr.maincare.tdd.tennis;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.Assert.*;
-
-import java.math.BigDecimal;
 
 import org.junit.Test;
 

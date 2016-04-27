@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 
 public class Set {
 
+    private static final int GAIN_SET = 6;
     private String joueur1;
     private String joueur2;
     private String serveur;
@@ -67,9 +68,9 @@ public class Set {
         int scoreJoueur2 = scoreJoueur(joueur2);
         boolean ecartSuffisant = Math.abs(scoreJoueur1-scoreJoueur2) >= 2;
         if(ecartSuffisant) {
-            if(scoreJoueur1>=6) {
+            if(scoreJoueur1>=GAIN_SET) {
                 return joueur1;
-            } else if(scoreJoueur2>=6) {
+            } else if(scoreJoueur2>=GAIN_SET) {
                 return joueur2;
             }
         }
