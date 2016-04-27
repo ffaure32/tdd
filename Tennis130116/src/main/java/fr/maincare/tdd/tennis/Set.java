@@ -38,8 +38,8 @@ public class Set {
     }
     
     public Jeu nouveauJeu() {
-        if(jeuEnCours()) {
-            throw new IllegalStateException("impossible de démarrer un nouveau jeu si un jeu est en cours");
+        if(jeuEnCours() || vainqueur() != null) {
+            throw new IllegalStateException("impossible de démarrer un nouveau jeu si un jeu est en cours ou si le set est terminé");
         }
         Jeu jeu = initJeu();
         jeux.add(jeu);

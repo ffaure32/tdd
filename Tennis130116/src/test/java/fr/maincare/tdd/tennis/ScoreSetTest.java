@@ -30,6 +30,19 @@ public class ScoreSetTest {
     }
 
 
+    @Test
+    public void leScoreAugmenteAvec2Jeux() throws Exception {
+        // ARRANGE
+        Set partie = new Set();
+        jeuJoueur1(partie);
+        jeuJoueur2(partie);
+
+        String score = partie.score();
+        // ASSERT
+        assertThat(score).isEqualTo("1-1");
+    }
+
+    
     @Test(expected=IllegalStateException.class)
     public void onNePeutCommencerUnNouveauJeuSurUnJeuExistant() throws Exception {
         // ARRANGE
@@ -71,12 +84,56 @@ public class ScoreSetTest {
         assertThat(vainqueur).isEqualTo("joueur1");
     }
 
+    @Test
+    public void joueur2Vainqueur() throws Exception {
+        // ARRANGE
+        Set partie = new Set();
+
+        // ACT
+        jeuJoueur2(partie);
+        jeuJoueur2(partie);
+        jeuJoueur2(partie);
+        jeuJoueur2(partie);
+        jeuJoueur2(partie);
+        jeuJoueur2(partie);
+        String vainqueur = partie.vainqueur();
+
+        // ASSERT
+        assertThat(vainqueur).isEqualTo("joueur2");
+    }
+
+    @Test(expected=IllegalStateException.class)
+    public void impossibleDeCreerUnNouveauJeuSiSetTermine() throws Exception {
+        // ARRANGE
+        Set partie = new Set();
+
+        // ACT
+        jeuJoueur1(partie);
+        jeuJoueur1(partie);
+        jeuJoueur1(partie);
+        jeuJoueur1(partie);
+        jeuJoueur1(partie);
+        jeuJoueur1(partie);
+        jeuJoueur1(partie);
+
+        // ASSERT
+    }
+
+
     private void jeuJoueur1(Set partie) {
         Jeu jeu = partie.nouveauJeu();
-        jeu.pointJoueur1();
-        jeu.pointJoueur1();
-        jeu.pointJoueur1();
-        jeu.pointJoueur1();
+        jeu.point("joueur1");
+        jeu.point("joueur1");
+        jeu.point("joueur1");
+        jeu.point("joueur1");
+    }
+
+    private void jeuJoueur2(Set partie) {
+        Jeu jeu = partie.nouveauJeu();
+        jeu.point("joueur2");
+        jeu.point("joueur2");
+        jeu.point("joueur2");
+        jeu.point("joueur2");
     }
 
 }
