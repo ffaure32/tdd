@@ -8,8 +8,31 @@ public class Jeu {
     private static final String[] SCORES_POSSIBLES = {"0", "15", "30", "40", "A"};
     private ScoreJeuJoueur scoreJoueur1 = new ScoreJeuJoueur();
     private ScoreJeuJoueur scoreJoueur2 = new ScoreJeuJoueur();
+
+    private String nomServeur;
+    private String nomReceveur;
+    
+    public Jeu() {
+        this("serveur", "receveur");
+    }
+    
+    public Jeu(String serveur, String receveur) {
+        this.nomReceveur = receveur;
+        this.nomServeur = serveur;
+    }
+
     public String score() {
         return SCORES_POSSIBLES[indexScoreJoueur1()]+SEPARATEUR_SCORE+SCORES_POSSIBLES[indexScoreJoueur2()];
+    }
+
+    public void point(String marqueur) {
+        if(marqueur.equals(nomServeur)) {
+            pointJoueur1();
+        } else if(marqueur.equals(nomReceveur)) {
+            pointJoueur2();
+        } else {
+            throw new IllegalArgumentException("Joueur inconnu");
+        }
     }
 
     public void pointJoueur1() {
@@ -54,5 +77,6 @@ public class Jeu {
     private int indexScoreJoueur2() {
         return scoreJoueur2.getIndexScore();
     }
+
 
 }
