@@ -13,7 +13,7 @@ public class Jeu {
     private String nomReceveur;
     
     public Jeu() {
-        this("serveur", "receveur");
+        this("joueur1", "joueur2");
     }
     
     public Jeu(String serveur, String receveur) {
@@ -62,9 +62,9 @@ public class Jeu {
         boolean ecartSuffisant = Math.abs(indexScoreJoueur2()-indexScoreJoueur1()) >= ECART_MINIMUM_GAIN_JEU;
         if(ecartSuffisant) {
             if(indexScoreJoueur1()>=NOMBRE_POINTS_GAIN_JEU) {
-                return "joueur1";
+                return nomServeur;
             } else if(indexScoreJoueur2()>=NOMBRE_POINTS_GAIN_JEU) {
-                return "joueur2";
+                return nomReceveur;
             }
         }
         return null;
