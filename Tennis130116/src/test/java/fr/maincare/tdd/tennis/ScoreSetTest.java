@@ -50,4 +50,16 @@ public class ScoreSetTest {
         // ASSERT
     }
 
+    public void sansVainqueur() throws Exception {
+        // ARRANGE
+        Set partie = new Set();
+
+        // ACT
+        partie.nouveauJeu();
+        String vainqueur = partie.vainqueur();
+
+        // ASSERT
+        assertThat(vainqueur).isNull();
+    }
+
 }

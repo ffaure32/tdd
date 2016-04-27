@@ -23,37 +23,47 @@ public class Set {
     }
     
     public String score() {
-        int scoreJoueur1 = 0;
-        int scoreJoueur2 = 0;
-        for(Jeu jeu : jeux) {
-            if(joueur1.equals(jeu.vainqueur())) {
-                scoreJoueur1++;
-            } else if(joueur2.equals(jeu.vainqueur())) {
-                scoreJoueur2++;
-            }
-        }
-        return scoreJoueur1+"-"+scoreJoueur2;
+        return scoreJoueur(joueur1)+"-"+scoreJoueur(joueur2);
     }
 
+    private int scoreJoueur(String nomJoueur) {
+        int scoreJoueur = 0;
+        for(Jeu jeu : jeux) {
+            if(nomJoueur.equals(jeu.vainqueur())) {
+                scoreJoueur++;
+            }
+        }
+        return scoreJoueur;
+    }
+    
     public Jeu nouveauJeu() {
         if(jeuEnCours()) {
             throw new IllegalStateException("impossible de démarrer un nouveau jeu si un jeu est en cours");
         }
-        Jeu jeu = null;
-        if(serveur == null || serveur.equals(joueur2)) {
-            serveur = joueur1;
-            jeu = new Jeu(joueur1, joueur2);
-        } else {
-            serveur = joueur2;
-            jeu = new Jeu(joueur2, joueur1);
-        }
+        Jeu jeu = initJeu();
         jeux.add(jeu);
         return jeu;
+    }
+
+    private Jeu initJeu() {
+        String receveur = null;
+        if(serveur == null || serveur.equals(joueur2)) {
+            serveur = joueur1;
+            receveur = joueur2;
+        } else {
+            serveur = joueur2;
+            receveur = joueur1;
+        }
+        return new Jeu(serveur, receveur);
     }
 
     private boolean jeuEnCours() {
         Jeu jeuCourant = Iterables.getLast(jeux, null);
         return (jeuCourant != null && jeuCourant.vainqueur() == null);
+    }
+
+    public String vainqueur() {
+        return null;
     }
 
 }
