@@ -2,6 +2,7 @@ package fr.maincare.tdd.tennis;
 
 import java.util.List;
 
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 public class Set {
@@ -35,6 +36,9 @@ public class Set {
     }
 
     public Jeu nouveauJeu() {
+        if(jeuEnCours()) {
+            throw new IllegalStateException("impossible de démarrer un nouveau jeu si un jeu est en cours");
+        }
         Jeu jeu = null;
         if(serveur == null || serveur.equals(joueur2)) {
             serveur = joueur1;
@@ -45,6 +49,11 @@ public class Set {
         }
         jeux.add(jeu);
         return jeu;
+    }
+
+    private boolean jeuEnCours() {
+        Jeu jeuCourant = Iterables.getLast(jeux, null);
+        return (jeuCourant != null && jeuCourant.vainqueur() == null);
     }
 
 }

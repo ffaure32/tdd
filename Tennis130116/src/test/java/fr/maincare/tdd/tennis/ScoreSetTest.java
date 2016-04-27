@@ -38,4 +38,16 @@ public class ScoreSetTest {
     }
 
 
+    @Test(expected=IllegalStateException.class)
+    public void onNePeutCommencerUnNouveauJeuSurUnJeuExistant() throws Exception {
+        // ARRANGE
+        Set partie = new Set();
+
+        // ACT
+        partie.nouveauJeu();
+        partie.nouveauJeu();
+
+        // ASSERT
+    }
+
 }
