@@ -6,11 +6,11 @@ import org.junit.Test;
 
 public class MolkkyTest {
 
-	private Molkky molky;
+	private Molkky molkky;
 	
 	@Before
 	public void init() {
-		molky = new Molkky();
+		molkky = new Molkky();
 	}
 
 	@Test(expected=IllegalArgumentException.class)
@@ -18,7 +18,7 @@ public class MolkkyTest {
 		// Arrange
 		
 		// Act
-		molky.demarrerPartie(0);
+		molkky.demarrerPartie(0);
 		
 		// Assert
 	}
@@ -28,10 +28,10 @@ public class MolkkyTest {
 		// Arrange
 		
 		// Act
-		molky.demarrerPartie(1);
+		molkky.demarrerPartie(1);
 		
 		// Assert
-		String score = molky.score();
+		String score = molkky.score();
 		Assertions.assertThat(score).isEqualTo("Joueur 1:0");
 	}
 
@@ -40,10 +40,10 @@ public class MolkkyTest {
 		// Arrange
 		
 		// Act
-		molky.demarrerPartie(2);
+		molkky.demarrerPartie(2);
 		
 		// Assert
-		String score = molky.score();
+		String score = molkky.score();
 		Assertions.assertThat(score).isEqualTo("Joueur 1:0 - Joueur 2:0");
 	}
 
@@ -52,7 +52,7 @@ public class MolkkyTest {
 		// Arrange
 		
 		// Act
-		molky.score();
+		molkky.score();
 		
 		// Assert
 	}
@@ -60,13 +60,13 @@ public class MolkkyTest {
 	@Test
 	public void scorePremierLancerUneQuille() {
 		// Arrange
-		molky.demarrerPartie(1);
+		molkky.demarrerPartie(1);
 		
 		// Act
-		molky.lancer(5);
+		molkky.lancer(5);
 		
 		// Assert
-		String score = molky.score();
+		String score = molkky.score();
 		Assertions.assertThat(score).isEqualTo("Joueur 1:5");
 		
 	}
@@ -74,13 +74,13 @@ public class MolkkyTest {
 	@Test
 	public void scorePremierLancer2Quilles() {
 		// Arrange
-		molky.demarrerPartie(1);
+		molkky.demarrerPartie(1);
 		
 		// Act
-		molky.lancer(5, 6);
+		molkky.lancer(5, 6);
 		
 		// Assert
-		String score = molky.score();
+		String score = molkky.score();
 		Assertions.assertThat(score).isEqualTo("Joueur 1:2");
 		
 	}
@@ -88,13 +88,13 @@ public class MolkkyTest {
 	@Test
 	public void scorePremierLancer4Quilles() {
 		// Arrange
-		molky.demarrerPartie(1);
+		molkky.demarrerPartie(1);
 		
 		// Act
-		molky.lancer(5, 6, 1, 8);
+		molkky.lancer(5, 6, 1, 8);
 		
 		// Assert
-		String score = molky.score();
+		String score = molkky.score();
 		Assertions.assertThat(score).isEqualTo("Joueur 1:4");
 		
 	}
@@ -102,27 +102,27 @@ public class MolkkyTest {
 	@Test
 	public void scoreLancer2Joueurs() {
 		// Arrange
-		molky.demarrerPartie(2);
+		molkky.demarrerPartie(2);
 		
 		// Act
-		molky.lancer(5);
-		molky.lancer(6);
+		molkky.lancer(5);
+		molkky.lancer(6);
 		
 		// Assert
-		String score = molky.score();
+		String score = molkky.score();
 		Assertions.assertThat(score).isEqualTo("Joueur 1:5 - Joueur 2:6");
 	}
 
 	@Test
 	public void scoreTropImportant() {
 		// Arrange
-		molky.demarrerPartie(1);
+		molkky.demarrerPartie(1);
 		
 		// Act
 		lancersConsecutifs(12, 12, 12, 12, 12);
 		
 		// Assert
-		String score = molky.score();
+		String score = molkky.score();
 		Assertions.assertThat(score).isEqualTo("Joueur 1:25");
 		
 	}
@@ -130,11 +130,11 @@ public class MolkkyTest {
 	@Test
 	public void scoreGagnant() {
 		// Arrange
-		molky.demarrerPartie(1);
+		molkky.demarrerPartie(1);
 		lancersConsecutifs(12, 12, 12, 12, 2);
 		
 		// Act
-		String classement = molky.classement();
+		String classement = molkky.classement();
 		
 		// Assert
 		Assertions.assertThat(classement).isEqualTo("Joueur 1");
@@ -144,11 +144,11 @@ public class MolkkyTest {
 	@Test
 	public void vainqueurIndetermine() {
 		// Arrange
-		molky.demarrerPartie(1);
-		molky.lancer(12);
+		molkky.demarrerPartie(1);
+		molkky.lancer(12);
 		
 		// Act
-		String classement = molky.classement();
+		String classement = molkky.classement();
 		
 		// Assert
 		Assertions.assertThat(classement).isNullOrEmpty();
@@ -157,11 +157,11 @@ public class MolkkyTest {
 	@Test
 	public void scoreGagnantJoueur2() {
 		// Arrange
-		molky.demarrerPartie(2);
+		molkky.demarrerPartie(2);
 		lancersConsecutifs(1, 12, 1, 12, 1, 12, 1, 12, 1, 2);
 		
 		// Act
-		String indexVainqueur = molky.classement();
+		String indexVainqueur = molkky.classement();
 		
 		// Assert
 		Assertions.assertThat(indexVainqueur).isEqualTo("Joueur 2");
@@ -170,10 +170,10 @@ public class MolkkyTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void impossibleDeFaireTomber2FoisLaMemeQuille() {
 		// Arrange
-		molky.demarrerPartie(1);
+		molkky.demarrerPartie(1);
 		
 		// Act
-		molky.lancer(5, 5);
+		molkky.lancer(5, 5);
 		
 		// Assert
 		
@@ -182,10 +182,10 @@ public class MolkkyTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void laQuilleMaxAUnScore12() {
 		// Arrange
-		molky.demarrerPartie(1);
+		molkky.demarrerPartie(1);
 		
 		// Act
-		molky.lancer(13);
+		molkky.lancer(13);
 		
 		// Assert
 		
@@ -194,10 +194,10 @@ public class MolkkyTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void laQuilleMinAUnScore1() {
 		// Arrange
-		molky.demarrerPartie(1);
+		molkky.demarrerPartie(1);
 		
 		// Act
-		molky.lancer(0);
+		molkky.lancer(0);
 		
 		// Assert
 		
@@ -212,7 +212,7 @@ public class MolkkyTest {
 		demarrerPartieDalton();
 		
 		// Assert
-		String score = molky.score();
+		String score = molkky.score();
 		Assertions.assertThat(score).isEqualTo("John:0 - William:0 - Jack:0 - Averel:0");
 		
 		
@@ -221,14 +221,14 @@ public class MolkkyTest {
 	@Test 
 	public void vainqueurAvecNom() {
 		// Arrange
-		molky.demarrerPartie("John", "William");
+		molkky.demarrerPartie("John", "William");
 		
 		// Act
 		lancersConsecutifs(12, 1, 12, 1, 12, 1, 12, 1, 2, 1);
 
 		
 		// Assert
-		String vainqueur = molky.classement();
+		String vainqueur = molkky.classement();
 		Assertions.assertThat(vainqueur).isEqualTo("John");
 	}
 
@@ -240,7 +240,7 @@ public class MolkkyTest {
 		demarrerPartieDalton();
 		
 		// Assert
-		String prochainLanceur = molky.nomProchainLanceur();
+		String prochainLanceur = molkky.nomProchainLanceur();
 		Assertions.assertThat(prochainLanceur).isEqualTo("John");
 		
 		
@@ -252,10 +252,10 @@ public class MolkkyTest {
 		demarrerPartieDalton();
 		
 		// Act
-		molky.lancer();
+		molkky.lancer();
 		
 		// Assert
-		String prochainLanceur = molky.nomProchainLanceur();
+		String prochainLanceur = molkky.nomProchainLanceur();
 		Assertions.assertThat(prochainLanceur).isEqualTo("William");
 	}
 
@@ -267,7 +267,7 @@ public class MolkkyTest {
 		// Act
 		lancersConsecutifs(12, 1, 1, 1, 12, 1, 1, 1, 12, 1, 1, 1, 12, 1, 1, 1, 2, 1, 1, 1);
 		
-		String prochainLanceur = molky.nomProchainLanceur();
+		String prochainLanceur = molkky.nomProchainLanceur();
 		
 		// Assert
 		Assertions.assertThat(prochainLanceur).isEqualTo("William");
@@ -276,11 +276,11 @@ public class MolkkyTest {
 	@Test(expected=IllegalStateException.class)
 	public void lancerSurPartieTerminee() {
 		// Arrange
-		molky.demarrerPartie(1);
+		molkky.demarrerPartie(1);
 		lancersConsecutifs(12, 12, 12, 12, 2);
 		
 		// Act
-		molky.lancer(2);
+		molkky.lancer(2);
 		
 		// Assert
 	}
@@ -293,7 +293,7 @@ public class MolkkyTest {
 		// Act
 		lancersConsecutifs(12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 2, 2, 2, 2);
 		
-		String prochainLanceur = molky.classement();
+		String prochainLanceur = molkky.classement();
 		
 		// Assert
 		Assertions.assertThat(prochainLanceur).isEqualTo("John - William - Jack - Averel");
@@ -301,12 +301,12 @@ public class MolkkyTest {
 
 	private void lancersConsecutifs(int...lancers) {
 		for(int lancersUnitaires : lancers) {
-			molky.lancer(lancersUnitaires);	
+			molkky.lancer(lancersUnitaires);	
 		}
 	}
 
 	private void demarrerPartieDalton() {
-		molky.demarrerPartie("John", "William", "Jack", "Averel");
+		molkky.demarrerPartie("John", "William", "Jack", "Averel");
 	}
 
 

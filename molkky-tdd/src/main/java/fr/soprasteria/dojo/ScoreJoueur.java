@@ -11,10 +11,6 @@ public class ScoreJoueur {
 		this.nomJoueur = nomJoueur;
 	}
 
-	public ScoreJoueur(int indexJoueur) {
-		this.nomJoueur = "Joueur "+indexJoueur;
-	}
-
 	public void miseAJourScore(int... quillesTombees) {
 		if(quillesTombees.length == 1) {
 			score += quillesTombees[0];
