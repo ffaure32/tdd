@@ -22,15 +22,14 @@ public class Molkky {
 		demarrerPartie(Iterables.toArray(nomJoueurs, String.class));
 	}
 
-	private List<String> generationAutoNomsJoueurs(int nbJoueurs) {
-		return Stream.iterate(1, i -> i + 1).limit(nbJoueurs).map(i -> "Joueur "+i).collect(Collectors.toList());
-		// return IntStream.rangeClosed(1, nbJoueurs).boxed().map(i -> "Joueur "+i).collect(Collectors.toList());
-	}
-
 	public void demarrerPartie(String ... nomsJoueurs) {
 		Preconditions.checkArgument(nomsJoueurs.length >0, "Il faut au moins un joueur pour démarrer une partie");
 		initScores(nomsJoueurs);
 		initClassement(nomsJoueurs.length);
+	}
+
+	private List<String> generationAutoNomsJoueurs(int nbJoueurs) {
+		return Stream.iterate(1, i -> i + 1).limit(nbJoueurs).map(i -> "Joueur "+i).collect(Collectors.toList());
 	}
 
 	private void initClassement(int nombreJoueurs) {
@@ -94,11 +93,7 @@ public class Molkky {
 	}
 
 	private void miseAJourReelleIndexLanceur() {
-		if(dernierLanceur()) {
-			indexLanceur = 0;
-		} else {
-			indexLanceur++;
-		}
+		indexLanceur = dernierLanceur() ? 0 : indexLanceur+1;
 	}
 
 	private boolean dernierLanceur() {
