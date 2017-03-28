@@ -299,6 +299,38 @@ public class MolkkyTest {
 		Assertions.assertThat(prochainLanceur).isEqualTo("John - William - Jack - Averel");
 	}
 
+	@Test 
+	public void razSur3LancersSansQuille() {
+		// Arrange
+		molkky.demarrerPartie(1);
+		molkky.lancer(2);
+		
+		// Act
+		molkky.lancer();
+		molkky.lancer();
+		molkky.lancer();
+		
+		// Assert
+		String score = molkky.score();
+		Assertions.assertThat(score).isEqualTo("Joueur 1:0");
+	}
+
+	@Test 
+	public void razNbFailsSiQuilleTombee() {
+		// Arrange
+		molkky.demarrerPartie(1);
+		
+		// Act
+		molkky.lancer();
+		molkky.lancer(2);
+		molkky.lancer();
+		molkky.lancer();
+		
+		// Assert
+		String score = molkky.score();
+		Assertions.assertThat(score).isEqualTo("Joueur 1:2");
+	}
+
 	private void lancersConsecutifs(int...lancers) {
 		for(int lancersUnitaires : lancers) {
 			molkky.lancer(lancersUnitaires);	
@@ -308,6 +340,5 @@ public class MolkkyTest {
 	private void demarrerPartieDalton() {
 		molkky.demarrerPartie("John", "William", "Jack", "Averel");
 	}
-
 
 }

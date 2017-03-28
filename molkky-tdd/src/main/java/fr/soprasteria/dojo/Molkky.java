@@ -1,6 +1,9 @@
 package fr.soprasteria.dojo;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
@@ -20,11 +23,8 @@ public class Molkky {
 	}
 
 	private List<String> generationAutoNomsJoueurs(int nbJoueurs) {
-		List<String> nomJoueurs = Lists.newArrayListWithExpectedSize(nbJoueurs);
-		for(int i = 0;i< nbJoueurs; i++) {
-			nomJoueurs.add("Joueur "+(i+1));
-		}
-		return nomJoueurs;
+		return Stream.iterate(1, i -> i + 1).limit(nbJoueurs).map(i -> "Joueur "+i).collect(Collectors.toList());
+		// return IntStream.rangeClosed(1, nbJoueurs).boxed().map(i -> "Joueur "+i).collect(Collectors.toList());
 	}
 
 	public void demarrerPartie(String ... nomsJoueurs) {
