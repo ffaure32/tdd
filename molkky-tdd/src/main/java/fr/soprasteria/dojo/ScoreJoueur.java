@@ -3,7 +3,7 @@ package fr.soprasteria.dojo;
 public class ScoreJoueur {
 	private static final int NB_FAILS_TO_RESET = 3;
 	private static final int SCORE_GAGNANT = 50;
-	private static final int SCORE_RESET = 25;
+	private static final int SCORE_SUR_DEPASSEMENT = 25;
 
 	public final String nomJoueur;
 	private int score;
@@ -14,28 +14,24 @@ public class ScoreJoueur {
 	}
 
 	public void miseAJourScore(int... quillesTombees) {
-		if (quillesTombees.length == 0) {
+		ScoreLancer lancer = new ScoreLancer(quillesTombees);
+		if (lancer.fail()) {
 			miseAJourSurFail();
 		} else {
-			miseAJourAvecQuilles(quillesTombees);
+			miseAJourAvecQuilles(lancer);
 		}
 		resetScoreSiMaxDepasse();
-
 	}
 
 	private void resetScoreSiMaxDepasse() {
 		if (score > SCORE_GAGNANT) {
-			score = SCORE_RESET;
+			score = SCORE_SUR_DEPASSEMENT;
 		}
 	}
 
-	private void miseAJourAvecQuilles(int... quillesTombees) {
+	private void miseAJourAvecQuilles(ScoreLancer lancer) {
 		nbFails = 0;
-		if (quillesTombees.length == 1) {
-			score += quillesTombees[0];
-		} else {
-			score += quillesTombees.length;
-		}
+		score += lancer.scoreLancer();
 	}
 
 	private void miseAJourSurFail() {
